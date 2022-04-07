@@ -13,10 +13,8 @@ for i in $(cat $file); do # loop through each line
 		SUBDIR=$(echo $i | awk '{ print $1 }')
 		mkdir -p "$DIR/$SUBDIR" # Create subdirectories
 		NF=$(echo $i | awk -v FS=" " "{ print NF }")
-		#echo $NF $i
 		for ((j=2 ; j <= NF ; j++)); do
 		 	echo $i | awk -v j=$j '{ print $j }' | xargs wget --directory-prefix "$DIR/$SUBDIR"
-		# 	# echo $i | awk '{ print $j }' # | xargs wget --directory-prefix "$DIR/$SUBDIR"
 		done
 	fi
 
